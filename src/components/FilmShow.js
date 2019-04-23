@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import GetTrailer from './GetTrailer.js'
+import Recommendations from './Recommendations.js'
 import { Link } from 'react-router-dom'
 
 class FilmShow extends React.Component {
@@ -40,7 +41,8 @@ class FilmShow extends React.Component {
         <div>{this.state.film.Title}</div>
         <div>{this.state.film.Plot}</div>
         <div>{this.state.film.Director}</div>
-        <GetTrailer id={this.props.match.params.id} moviedbID={this.state.moviedbID} youtubeID={this.state.youtubeID}/>
+        <GetTrailer moviedbID={this.state.moviedbID} youtubeID={this.state.youtubeID}/>
+        <Recommendations moviedbID={this.state.moviedbID} />
       </div>
     )
   }
