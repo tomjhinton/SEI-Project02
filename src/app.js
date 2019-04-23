@@ -2,16 +2,24 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bulma'
 
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
+
 import FilmSearch from './components/FilmSearch.js'
+import FilmShow from './components/FilmShow.js'
 
 console.log('JS Loaded')
 
 class App extends React.Component {
   render() {
     return (
-      <main>
-        <FilmSearch />
-      </main>
+      <Router>
+        <main>
+          <Switch>
+            <Route path="/:id" component ={FilmShow} />
+            <Route path="/" component={FilmSearch} />
+          </Switch>
+        </main>
+      </Router>
     )
   }
 }

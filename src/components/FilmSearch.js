@@ -1,7 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import axios from 'axios'
 import 'bulma'
+
+import FilmCard from './FilmCard.js'
 
 class FilmSearch extends React.Component {
   constructor(){
@@ -24,10 +27,11 @@ class FilmSearch extends React.Component {
   handleChange(e){
     e.preventDefault()
     const data = ({ ...this.state.searchTitle, [e.target.name]: e.target.value })
+    console.log(e.target.name)
     console.log(`data ${data}`)
     this.setState({ searchTitle: data })
     console.log(data)
-    console.log(this.state.searchTitle)
+    console.log(this.state.searchTitle.searchInput)
   }
 
 
@@ -38,7 +42,8 @@ class FilmSearch extends React.Component {
 
     console.log(this)
 
-    axios.get(`http://www.omdbapi.com/?s=${this.state.searchTitle}&apikey=f09ea565`)
+    axios.get(`http://www.omdbapi.com/?s=${this.state.searchTitle.searchInput
+    }&apikey=f09ea565`)
       .then(res => {
         this.setState({ films: res.data.Search })
       })
@@ -51,14 +56,22 @@ class FilmSearch extends React.Component {
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input  onChange={this.handleChange}>
+          <input name="searchInput"  onChange={this.handleChange}>
           </input>
           <button>Search</button>
         </form>
 
-        <p>{this.state.films.map(film =>
-          <h2 key={film.imdbID}>{film.Title}</h2>
-        )}</p>
+        <div className="container">
+          <div className="columns is-multiline">
+            {this.state.films.map(film =>
+              <Link key={film.imdbID} to={`/${film.imdbID}`}>
+                <div className="column is-one-quarter">
+                  <FilmCard {...film}/>
+                </div>
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
     )
   }
