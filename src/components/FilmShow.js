@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import GetTrailer from './GetTrailer.js'
+
 
 class FilmShow extends React.Component {
   constructor(){
@@ -22,6 +24,7 @@ class FilmShow extends React.Component {
         <div>{this.state.film.Title}</div>
         <div>{this.state.film.Plot}</div>
         <div>{this.state.film.Director}</div>
+        <GetTrailer id={this.props.match.params.id} />
       </div>
     )
   }
