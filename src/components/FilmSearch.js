@@ -42,15 +42,14 @@ class FilmSearch extends React.Component {
 
     console.log(this)
 
+    
+
     axios.get(`http://www.omdbapi.com/?s=${this.state.searchTitle.searchInput
     }&apikey=f09ea565`)
       .then(res => {
-        this.setState({ films: res.data.Search })
+        this.setState({ films: res.data.Search.filter((film) => film.Poster!=='N/A' && film.Type==='movie') })
       })
-
   }
-
-
 
   render() {
     return(
@@ -63,12 +62,13 @@ class FilmSearch extends React.Component {
 
         <div className="container">
           <div className="columns is-multiline">
-            {this.state.films.map(film =>
-              <Link key={film.imdbID} to={`/${film.imdbID}`}>
+            {this.state.films.map(film =>{
+              return(<Link key={film.imdbID} to={`/${film.imdbID}`}>
                 <div className="column is-one-quarter">
                   <FilmCard {...film}/>
                 </div>
-              </Link>
+              </Link>)
+            }
             )}
           </div>
         </div>

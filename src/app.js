@@ -14,6 +14,7 @@ class App extends React.Component {
     return (
       <Router>
         <main>
+          
           <Switch>
             <Route path="/:id" component ={FilmShow} />
             <Route path="/" component={FilmSearch} />
