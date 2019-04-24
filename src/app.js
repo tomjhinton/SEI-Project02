@@ -13,17 +13,16 @@ console.log('JS Loaded')
 class App extends React.Component {
   render() {
     return (
-
-
-
-      <Router>
-        <FilmSearch />
-        <main>
-          <Switch>
-            <Route path="/:id" component ={FilmShow} />
-          </Switch>
-        </main>
-      </Router>
+      <div className="container">
+        <Router>
+          <FilmSearch />
+          <main>
+            <Switch>
+              <Route path="/:id" component ={FilmShow} />
+            </Switch>
+          </main>
+        </Router>
+      </div>
     )
   }
 }

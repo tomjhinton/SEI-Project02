@@ -45,9 +45,11 @@ class Recommentdations extends React.Component {
 
     if (!this.state.recommendations) return null
     return(
+
       this.state.recommendations.map(recommendation =>
-        <div onClick={() => this.handleClick(recommendation.id)}  key={recommendation.id}>{recommendation.original_title}</div>
+        <div className="recommendation" onClick={() => this.handleClick(recommendation.id)}  key={recommendation.id}>{recommendation.original_title}</div>
       )
+
     )
   }
 }

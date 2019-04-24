@@ -49,7 +49,7 @@ class FilmSearch extends React.Component {
 
   render() {
     return(
-      <div>
+      <section className="film-search">
         <form onSubmit={this.handleSubmit}>
           <input name="searchInput"  onChange={this.handleChange}>
           </input>
@@ -61,18 +61,19 @@ class FilmSearch extends React.Component {
         }
         }>
           <div  className="columns is-multiline">
-
             {this.state.films.map(film =>{
-              return(<Link key={film.imdbID} to={`/${film.imdbID}`}>
-                <div className="column is-one-quarter">
-                  <FilmCard  {...film}/>
+              return(
+                <div key={film.imdbID} className="column is-one-quarter">
+                  <Link to={`/${film.imdbID}`}>
+                    <FilmCard  {...film}/>
+                  </Link>
                 </div>
-              </Link>)
+              )
             }
             )}
           </div>
         </div>
-      </div>
+      </section>
     )
   }
 }

@@ -17,21 +17,21 @@ class FilmShow extends React.Component {
 
   componentDidUpdate(prevProps){
     //update state from props
-     if(prevProps.location.pathname !== this.props.location.pathname){
-       axios.get(`http://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=f09ea565`)
-         .then(res => (this.setState({film: res.data})))
+    if(prevProps.location.pathname !== this.props.location.pathname){
+      axios.get(`http://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=f09ea565`)
+        .then(res => (this.setState({film: res.data})))
 
-       axios.get(`https://api.themoviedb.org/3/find/${this.props.match.params.id}?api_key=205882c0653c77431db40e15ec7fd210&external_source=imdb_id`)
-         .then(res => {
-           this.setState({ moviedbID: res.data.movie_results[0].id })
-           axios.get(`http://api.themoviedb.org/3/movie/${this.state.moviedbID}/videos?api_key=205882c0653c77431db40e15ec7fd210`)
-             .then(res => {
-               this.setState({youtubeID: res.data.results[0].key})
-             })
-         })
+      axios.get(`https://api.themoviedb.org/3/find/${this.props.match.params.id}?api_key=205882c0653c77431db40e15ec7fd210&external_source=imdb_id`)
+        .then(res => {
+          this.setState({ moviedbID: res.data.movie_results[0].id })
+          axios.get(`http://api.themoviedb.org/3/movie/${this.state.moviedbID}/videos?api_key=205882c0653c77431db40e15ec7fd210`)
+            .then(res => {
+              this.setState({youtubeID: res.data.results[0].key})
+            })
+        })
 
+    }
   }
-}
 
 
   componentDidMount() {
@@ -53,13 +53,19 @@ class FilmShow extends React.Component {
   render(){
     if(!this.state.film) return null
     return (
-      <div>
-        
-        <div>{this.state.film.Title}</div>
-        <div>{this.state.film.Plot}</div>
-        <div>{this.state.film.Director}</div>
+      <div className="card">
+        <div className="card-header">
+          <div className="card-header-title title is-2">{this.state.film.Title}</div>
+        </div>
+        <div className="card-content">{this.state.film.Director}   |     {this.state.film.Runtime}   |   {this.state.film.Genre} | {this.state.film.Year}  </div>
+
+        <div className="card-content">{this.state.film.Plot}</div>
+
         <GetTrailer moviedbID={this.state.moviedbID} youtubeID={this.state.youtubeID}/>
-        <Recommendations moviedbID={this.state.moviedbID} />
+        <div className="title is-3"> Similar movies...</div>
+        <div className="recommendations">
+          <Recommendations moviedbID={this.state.moviedbID} />
+        </div>
       </div>
     )
   }
