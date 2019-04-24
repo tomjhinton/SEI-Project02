@@ -12,43 +12,39 @@ class FilmSearch extends React.Component {
 
     this.state = {
       films: [],
-      searchTitle: []
+      searchTitle: [],
+      active: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.toggleActive - this.toggleActive.bind(this)
   }
 
   componentDidMount(){
-
-
 
   }
 
   handleChange(e){
     e.preventDefault()
     const data = ({ ...this.state.searchTitle, [e.target.name]: e.target.value })
-    console.log(e.target.name)
-    console.log(`data ${data}`)
     this.setState({ searchTitle: data })
-    console.log(data)
-    console.log(this.state.searchTitle.searchInput)
   }
 
+  toggleActive(){
+    this.setState( {active: !this.state.active} )
+    console.log(this)
+  }
 
   handleSubmit(e){
     e.preventDefault()
-    console.log('working')
-
-
-    console.log(this)
-
-    
 
     axios.get(`http://www.omdbapi.com/?s=${this.state.searchTitle.searchInput
     }&apikey=f09ea565`)
       .then(res => {
         this.setState({ films: res.data.Search.filter((film) => film.Poster!=='N/A' && film.Type==='movie') })
       })
+
+    this.setState( {active: true} )
   }
 
   render() {
@@ -60,12 +56,16 @@ class FilmSearch extends React.Component {
           <button>Search</button>
         </form>
 
-        <div className="container">
-          <div className="columns is-multiline">
+        <div  className={`container search-results ${this.state.active ? '':'not-active'}`} onClick={() => {
+          this.setState( {active: false} )
+        }
+        }>
+          <div  className="columns is-multiline">
+
             {this.state.films.map(film =>{
               return(<Link key={film.imdbID} to={`/${film.imdbID}`}>
                 <div className="column is-one-quarter">
-                  <FilmCard {...film}/>
+                  <FilmCard  {...film}/>
                 </div>
               </Link>)
             }

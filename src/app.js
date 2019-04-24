@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bulma'
+import './styles.scss'
 
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 
@@ -12,12 +13,14 @@ console.log('JS Loaded')
 class App extends React.Component {
   render() {
     return (
+
+
+
       <Router>
+        <FilmSearch />
         <main>
-          
           <Switch>
             <Route path="/:id" component ={FilmShow} />
-            <Route path="/" component={FilmSearch} />
           </Switch>
         </main>
       </Router>
