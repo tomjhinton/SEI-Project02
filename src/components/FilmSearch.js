@@ -49,31 +49,29 @@ class FilmSearch extends React.Component {
 
   render() {
     return(
-      <section className="film-search">
+      <div className="film-search">
         <form onSubmit={this.handleSubmit}>
           <input name="searchInput"  onChange={this.handleChange}>
           </input>
           <button>Search</button>
         </form>
 
-        <div  className={`container search-results ${this.state.active ? '':'not-active'}`} onClick={() => {
+        <section  className={`container search-results ${this.state.active ? '':'not-active'}`} onClick={() => {
           this.setState( {active: false} )
         }
         }>
           <div  className="columns is-multiline">
             {this.state.films.map(film =>{
               return(
-                <div key={film.imdbID} className="column is-one-quarter">
-                  <Link to={`/${film.imdbID}`}>
-                    <FilmCard  {...film}/>
-                  </Link>
-                </div>
+                <Link key={film.imdbID} className="column is-one-quarter" to={`/${film.imdbID}`}>
+                  <FilmCard  {...film}/>
+                </Link>
               )
             }
             )}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     )
   }
 }

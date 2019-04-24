@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import GetTrailer from './GetTrailer.js'
 import Recommendations from './Recommendations.js'
-import { Link } from 'react-router-dom'
 
 class FilmShow extends React.Component {
   constructor(){
@@ -53,20 +52,29 @@ class FilmShow extends React.Component {
   render(){
     if(!this.state.film) return null
     return (
-      <div className="card">
-        <div className="card-header">
-          <div className="card-header-title title is-2">{this.state.film.Title}</div>
-        </div>
-        <div className="card-content">{this.state.film.Director}   |     {this.state.film.Runtime}   |   {this.state.film.Genre} | {this.state.film.Year}  </div>
+      <section>
+        <div className="title is-2">{this.state.film.Title}</div>
+        <hr/>
 
-        <div className="card-content">{this.state.film.Plot}</div>
+        <div  >
+          {this.state.film.Director}   |
+          {this.state.film.Runtime}   |
+          {this.state.film.Genre} |
+          {this.state.film.Year}
+        </div>
+        <br/>
+
+        <div>{this.state.film.Plot}</div>
+        <br/>
 
         <GetTrailer moviedbID={this.state.moviedbID} youtubeID={this.state.youtubeID}/>
+
         <div className="title is-3"> Similar movies...</div>
+
         <div className="recommendations">
           <Recommendations moviedbID={this.state.moviedbID} />
         </div>
-      </div>
+      </section>
     )
   }
 

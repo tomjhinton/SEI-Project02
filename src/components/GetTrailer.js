@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-
 class GetTrailer extends React.Component {
 
   componentDidMount() {

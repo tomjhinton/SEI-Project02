@@ -2,25 +2,18 @@
 
 *{
   box-sizing: border-box;
-  font-family: 'Cuprum', sans-serif;
 }
 
 body{
     min-height: 100vh;
     padding-bottom: 50px;
+    // background-color: black;
+    background-image: url('/images/background.jpg');
 }
 
 .not-active{
   display: none;
 }
-
-.container{
-  // background-color: grey;
-}
-
-// .film-search{
-//   height: 100vh;
-// }
 
 
 .card{
@@ -32,11 +25,10 @@ h1{
   padding-top: 80px;
   font-family: 'Cuprum', sans-serif;
   font-size: 100px;
-  color: rgb(33, 150, 243);
+  color: yellow;
 }
 
 form{
-  // border: 1px solid black;
   display: flex;
   justify-content: center;
   padding: 10vh 0;
@@ -57,27 +49,27 @@ input{
 }
 
 button{
-
  color: black;
   border: 1px black solid;
 }
 
-.search-results{
-  justify-content: space-around;
+section{
+  padding: 50px;
+  background-color: white;
 }
 
 .column{
-  // border: 2px white solid;
-  padding: 0;
-  margin: 0;
+    padding: 2px;
+}
+
+.search-poster{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .columns{
-  margin: 0;
-}
 
-figure{
-  object-fit: cover;
 }
 
 .recommendations{
@@ -107,12 +99,12 @@ iframe{
   width: 100%;
 }
 
-.is-2{
+.is-2, .is-3{
   color: rgb(33, 150, 243);
+  font-family: 'Cuprum', sans-serif;
 }
 
 .is-3{
-  color: rgb(33, 150, 243);
   padding-top: 5px;
   padding-left: 20px;
 }
