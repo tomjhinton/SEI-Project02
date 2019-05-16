@@ -12,7 +12,6 @@ class Recommentdations extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-
   componentDidUpdate(prevProps){
     //update state from props
     if(prevProps.moviedbID !== this.props.moviedbID){
@@ -38,11 +37,7 @@ class Recommentdations extends React.Component {
       })
   }
 
-
-
-
   render(){
-
     if (!this.state.recommendations) return null
     return(
       this.state.recommendations.map(recommendation =>

@@ -8,6 +8,7 @@ import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import FilmSearch from './components/FilmSearch.js'
 import FilmShow from './components/FilmShow.js'
 
+
 console.log('JS Loaded')
 
 class App extends React.Component {
