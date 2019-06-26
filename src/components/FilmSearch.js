@@ -38,7 +38,7 @@ class FilmSearch extends React.Component {
   handleSubmit(e){
     e.preventDefault()
 
-    axios.get(`http://www.omdbapi.com/?s=${this.state.searchTitle.searchInput
+    axios.get(`https://www.omdbapi.com/?s=${this.state.searchTitle.searchInput
     }&apikey=f09ea565`)
       .then(res => {
         this.setState({ films: res.data.Search.filter((film) => film.Poster!=='N/A' && film.Type==='movie') })
