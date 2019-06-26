@@ -17,13 +17,13 @@ class FilmShow extends React.Component {
   componentDidUpdate(prevProps){
     //update state from props
     if(prevProps.location.pathname !== this.props.location.pathname){
-      axios.get(`http://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=f09ea565`)
+      axios.get(`https://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=f09ea565`)
         .then(res => (this.setState({film: res.data})))
 
       axios.get(`https://api.themoviedb.org/3/find/${this.props.match.params.id}?api_key=205882c0653c77431db40e15ec7fd210&external_source=imdb_id`)
         .then(res => {
           this.setState({ moviedbID: res.data.movie_results[0].id })
-          axios.get(`http://api.themoviedb.org/3/movie/${this.state.moviedbID}/videos?api_key=205882c0653c77431db40e15ec7fd210`)
+          axios.get(`https://api.themoviedb.org/3/movie/${this.state.moviedbID}/videos?api_key=205882c0653c77431db40e15ec7fd210`)
             .then(res => {
               this.setState({youtubeID: res.data.results[0].key})
             })
@@ -34,13 +34,13 @@ class FilmShow extends React.Component {
 
 
   componentDidMount() {
-    axios.get(`http://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=f09ea565`)
+    axios.get(`https://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=f09ea565`)
       .then(res => (this.setState({film: res.data})))
 
     axios.get(`https://api.themoviedb.org/3/find/${this.props.match.params.id}?api_key=205882c0653c77431db40e15ec7fd210&external_source=imdb_id`)
       .then(res => {
         this.setState({ moviedbID: res.data.movie_results[0].id })
-        axios.get(`http://api.themoviedb.org/3/movie/${this.state.moviedbID}/videos?api_key=205882c0653c77431db40e15ec7fd210`)
+        axios.get(`https://api.themoviedb.org/3/movie/${this.state.moviedbID}/videos?api_key=205882c0653c77431db40e15ec7fd210`)
           .then(res => {
             this.setState({youtubeID: res.data.results[0].key})
           })

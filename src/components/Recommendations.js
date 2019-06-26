@@ -15,7 +15,7 @@ class Recommentdations extends React.Component {
   componentDidUpdate(prevProps){
     //update state from props
     if(prevProps.moviedbID !== this.props.moviedbID){
-      axios.get(`http://api.themoviedb.org/3/movie/${this.props.moviedbID}/recommendations?api_key=205882c0653c77431db40e15ec7fd210`)
+      axios.get(`https://api.themoviedb.org/3/movie/${this.props.moviedbID}/recommendations?api_key=205882c0653c77431db40e15ec7fd210`)
         .then(res => {
           this.setState({ recommendations: res.data.results.slice(0,10) })
         })
@@ -23,7 +23,7 @@ class Recommentdations extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://api.themoviedb.org/3/movie/${this.props.moviedbID}/recommendations?api_key=205882c0653c77431db40e15ec7fd210`)
+    axios.get(`https://api.themoviedb.org/3/movie/${this.props.moviedbID}/recommendations?api_key=205882c0653c77431db40e15ec7fd210`)
       .then(res => {
         this.setState({ recommendations: res.data.results.slice(0,10) })
       })
@@ -31,7 +31,7 @@ class Recommentdations extends React.Component {
 
   handleClick(moviedbID){
     //To get imdbID and parese to FilmShow onClick
-    axios.get(`http://api.themoviedb.org/3/movie/${moviedbID}?api_key=205882c0653c77431db40e15ec7fd210`)
+    axios.get(`https://api.themoviedb.org/3/movie/${moviedbID}?api_key=205882c0653c77431db40e15ec7fd210`)
       .then(res => {
         this.props.history.push(`./${res.data.imdb_id}`)
       })
